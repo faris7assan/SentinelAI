@@ -1,0 +1,46 @@
+[
+  {
+    "analysis_id": "sbx-d268165b3a1f",
+    "analyzed_at": "2026-07-03T14:10:07.639182+00:00",
+    "entropy": -0.0,
+    "filename": "sentinelai-test.bin",
+    "matches": [
+      "none"
+    ],
+    "size": 1024,
+    "verdict": "benign"
+  },
+  {
+    "analysis_id": "sbx-a9244f20a577",
+    "analyzed_at": "2026-07-03T14:05:33.659924+00:00",
+    "entropy": -0.0,
+    "filename": "sentinelai-test.bin",
+    "matches": [
+      "none"
+    ],
+    "size": 1024,
+    "verdict": "benign"
+  },
+  {
+    "analysis_id": "sbx-f41149679686",
+    "analyzed_at": "2026-07-03T14:01:26.603041+00:00",
+    "entropy": -0.0,
+    "filename": "sentinelai-test.bin",
+    "matches": [
+      "none"
+    ],
+    "size": 1024,
+    "verdict": "benign"
+  },
+  {
+    "analysis_id": "sbx-ff973aefcc02",
+    "analyzed_at": "2026-07-03T14:01:12.231239+00:00",
+    "entropy": -0.0,
+    "filename": "sentinelai-test.bin",
+    "matches": [
+      "none"
+    ],
+    "size": 1024,
+    "verdict": "benign"
+  }
+]

@@ -1,0 +1,20 @@
+title: ssh attack
+id: 07715331-85f6-496a-ad79-dbe4009ba504
+status: experimental
+level: high
+description: |
+    Auto-generated Sigma rule for: ssh attack
+logsource:
+    category: process_creation
+    product: cloud
+detection:
+    selection:
+        CommandLine|contains:
+            - 'certutil'
+            - '-urlcache'
+            - '-decode'
+    condition: selection
+tags:
+    - attack.t1059
+falsepositives:
+    - Legitimate admin activity

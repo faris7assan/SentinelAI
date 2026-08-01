@@ -1,0 +1,12 @@
+[
+  {
+    "email": "admin@localhost",
+    "full_name": "Local Administrator",
+    "id": "local-admin",
+    "is_active": true,
+    "mfa_enabled": false,
+    "password": "admin",
+    "role": "admin",
+    "username": "admin"
+  }
+]

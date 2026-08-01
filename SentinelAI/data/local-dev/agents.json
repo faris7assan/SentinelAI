@@ -1,0 +1,14 @@
+[
+  {
+    "agent_id": "agent-ws01",
+    "hostname": "workstation-01",
+    "os_type": "windows",
+    "status": "online"
+  },
+  {
+    "agent_id": "agent-srv01",
+    "hostname": "server-01",
+    "os_type": "linux",
+    "status": "online"
+  }
+]

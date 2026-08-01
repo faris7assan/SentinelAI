@@ -1,0 +1,16 @@
+[
+  {
+    "anomaly": false,
+    "connected_at": "2026-07-03T08:15:00Z",
+    "country": "US",
+    "ip": "10.8.0.23",
+    "user": "analyst"
+  },
+  {
+    "anomaly": true,
+    "connected_at": "2026-07-03T08:18:00Z",
+    "country": "GB",
+    "ip": "10.8.0.24",
+    "user": "admin"
+  }
+]

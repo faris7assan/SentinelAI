@@ -1,0 +1,123 @@
+<!--
+  SentinelAI — Wazuh Integration Configuration
+  Forwards Wazuh alerts to SentinelAI via custom integration
+  Place in: /var/ossec/etc/ossec.conf (inside <ossec_config>)
+-->
+
+<ossec_config>
+
+  <!-- ── SentinelAI Custom Integration ──────────────────────── -->
+  <integration>
+    <name>custom-sentinelai</name>
+    <hook_url>http://SENTINELAI_SERVER:8000/logs/ingest</hook_url>
+    <level>5</level>
+    <alert_format>json</alert_format>
+    <options>
+      <header>Authorization: Bearer SENTINELAI_TOKEN</header>
+      <header>Content-Type: application/json</header>
+    </options>
+  </integration>
+
+  <!-- ── Active Response: Block IPs via SentinelAI SOAR ──────── -->
+  <command>
+    <name>sentinelai-block-ip</name>
+    <executable>sentinelai-block.sh</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <active-response>
+    <command>sentinelai-block-ip</command>
+    <location>server</location>
+    <rules_id>5710,5720,5722,40101,40111</rules_id>
+    <timeout>3600</timeout>
+  </active-response>
+
+  <!-- ── Syslog collection ─────────────────────────────────── -->
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/auth.log</location>
+    <label key="sentinelai_source">auth</label>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/syslog</location>
+  </localfile>
+
+  <localfile>
+    <log_format>audit</log_format>
+    <location>/var/log/audit/audit.log</location>
+  </localfile>
+
+  <!-- ── Suricata EVE JSON ─────────────────────────────────── -->
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/suricata/eve.json</location>
+    <label key="sentinelai_source">suricata</label>
+  </localfile>
+
+  <!-- ── Zeek conn.log ─────────────────────────────────────── -->
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/zeek/current/conn.log</location>
+    <label key="sentinelai_source">zeek</label>
+  </localfile>
+
+  <!-- ── CIS Hardening Checks ─────────────────────────────── -->
+  <wodle name="sca">
+    <enabled>yes</enabled>
+    <scan_on_start>yes</scan_on_start>
+    <interval>1d</interval>
+    <skip_nfs>yes</skip_nfs>
+    <policies>
+      <policy>cis_ubuntu_linux_22-04.yml</policy>
+      <policy>cis_amazon_linux_2.yml</policy>
+    </policies>
+  </wodle>
+
+  <!-- ── Vulnerability Detection ──────────────────────────── -->
+  <wodle name="vulnerability-detector">
+    <enabled>yes</enabled>
+    <interval>5m</interval>
+    <min_full_scan_interval>6h</min_full_scan_interval>
+    <run_on_start>yes</run_on_start>
+    <provider name="canonical">
+      <enabled>yes</enabled>
+      <os>jammy</os>
+    </provider>
+    <provider name="nvd">
+      <enabled>yes</enabled>
+      <update_interval>1h</update_interval>
+    </provider>
+  </wodle>
+
+  <!-- ── File Integrity Monitoring ────────────────────────── -->
+  <syscheck>
+    <frequency>300</frequency>
+    <alert_new_files>yes</alert_new_files>
+    <directories check_all="yes" realtime="yes" report_changes="yes">
+      /etc,/usr/bin,/usr/sbin,/bin,/sbin
+    </directories>
+    <directories check_all="yes" realtime="yes">
+      /var/www,/opt
+    </directories>
+    <ignore>/etc/mtab</ignore>
+    <ignore>/etc/mnttab</ignore>
+    <ignore>/etc/hosts.deny</ignore>
+    <ignore>/etc/mail/statistics</ignore>
+    <nodiff>/etc/ssl/private.key</nodiff>
+  </syscheck>
+
+  <!-- ── Rootcheck ─────────────────────────────────────────── -->
+  <rootcheck>
+    <disabled>no</disabled>
+    <check_files>yes</check_files>
+    <check_trojans>yes</check_trojans>
+    <check_dev>yes</check_dev>
+    <check_sys>yes</check_sys>
+    <check_pids>yes</check_pids>
+    <check_ports>yes</check_ports>
+    <check_if>yes</check_if>
+  </rootcheck>
+
+</ossec_config>

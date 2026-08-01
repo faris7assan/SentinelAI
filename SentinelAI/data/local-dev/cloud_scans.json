@@ -1,0 +1,25 @@
+[
+  {
+    "account_id": "123456789012",
+    "findings": [
+      {
+        "check": "public_s3",
+        "result": "pass"
+      },
+      {
+        "check": "mfa_enabled",
+        "result": "warn"
+      },
+      {
+        "check": "security_groups",
+        "result": "pass"
+      }
+    ],
+    "provider": "aws",
+    "region": "us-east-1",
+    "scan_id": "scan-3c97b5b32f58",
+    "scanned_at": "2026-07-03T14:10:07.608777+00:00",
+    "status": "completed",
+    "summary": "Local dev cloud posture scan completed"
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "name":        "SentinelAI Curated Threat Feeds",
+    "version":     "1.0.0",
+    "generated":   "2024-06-01T00:00:00Z",
+    "description": "Sample IOC feeds for bootstrapping SentinelAI threat intelligence",
+    "sources":     ["Abuse.ch Feodo", "Emerging Threats", "CIArmy", "Blocklist.de"]
+  },
+
+  "malicious_ips": [
+    { "ip": "185.220.101.45", "threat_type": "TOR exit node / attack source", "confidence": 95, "source": "abuse.ch" },
+    { "ip": "45.33.32.156",   "threat_type": "Port scanner / Shodan",         "confidence": 85, "source": "ciarmy" },
+    { "ip": "194.165.16.92",  "threat_type": "Botnet C2",                     "confidence": 90, "source": "feodo" },
+    { "ip": "198.98.49.112",  "threat_type": "SSH brute force",               "confidence": 80, "source": "blocklist.de" },
+    { "ip": "80.82.77.33",    "threat_type": "Mass scanner / Stretchoid",     "confidence": 88, "source": "emerging-threats" },
+    { "ip": "89.248.172.16",  "threat_type": "Shodan scanning",               "confidence": 82, "source": "emerging-threats" },
+    { "ip": "51.68.36.142",   "threat_type": "Brute force / credential stuff","confidence": 78, "source": "blocklist.de" },
+    { "ip": "209.141.36.20",  "threat_type": "TOR exit node",                 "confidence": 95, "source": "torproject" },
+    { "ip": "162.247.74.74",  "threat_type": "TOR exit node",                 "confidence": 95, "source": "torproject" },
+    { "ip": "107.189.10.143", "threat_type": "TOR exit node",                 "confidence": 95, "source": "torproject" }
+  ],
+
+  "malicious_domains": [
+    { "domain": "malware-c2.xyz",          "threat_type": "C2 server",         "malware": "generic" },
+    { "domain": "updates.windowsfix.ru",   "threat_type": "Fake update site",  "malware": "trojan dropper" },
+    { "domain": "corp-vpn-secure.net",     "threat_type": "Phishing",          "malware": "credential harvest" },
+    { "domain": "hr-payroll.company-secure.net", "threat_type": "Phishing",    "malware": "credential harvest" },
+    { "domain": "secure-banking-update.com","threat_type": "Phishing",         "malware": "banking trojan" },
+    { "domain": "cdn-delivery.workers.dev", "threat_type": "C2 via CDN",       "malware": "cobalt strike" },
+    { "domain": "telemetry-analytics.org", "threat_type": "Data exfiltration", "malware": "stealer" }
+  ],
+
+  "malware_hashes": {
+    "md5": [
+      { "hash": "098f6bcd4621d373cade4e832627b4f6", "name": "Mirai.botnet", "type": "ELF botnet" },
+      { "hash": "5d41402abc4b2a76b9719d911017c592", "name": "WannaCry",    "type": "Ransomware" },
+      { "hash": "c157a79031e1c40f85931829bc5fc552", "name": "Emotet.gen",  "type": "Banking trojan" }
+    ],
+    "sha256": [
+      { "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "name": "Empty file", "type": "test" },
+      { "hash": "aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899", "name": "Cobalt.Strike.Beacon", "type": "RAT" }
+    ]
+  },
+
+  "known_attack_ips_by_country": {
+    "DE": ["185.220.101.45", "185.220.102.8", "185.220.103.114"],
+    "RU": ["194.165.16.92", "185.244.25.207", "195.123.221.43"],
+    "CN": ["45.79.119.8", "118.25.195.40", "139.196.176.36"],
+    "NL": ["80.82.77.33", "89.248.172.16", "93.174.95.106"],
+    "US": ["45.33.32.156", "198.98.49.112", "104.131.0.69"]
+  },
+
+  "vpn_proxy_ranges": [
+    "10.8.0.0/24",
+    "172.16.0.0/12",
+    "100.64.0.0/10"
+  ],
+
+  "tor_exit_nodes": [
+    "209.141.36.20", "162.247.74.74", "107.189.10.143",
+    "199.195.248.42", "185.220.101.1", "185.220.102.250"
+  ],
+
+  "cve_watchlist": [
+    { "cve": "CVE-2021-44228", "name": "Log4Shell",           "cvss": 10.0, "affected": "Apache Log4j 2.x" },
+    { "cve": "CVE-2021-34527", "name": "PrintNightmare",      "cvss": 8.8,  "affected": "Windows Print Spooler" },
+    { "cve": "CVE-2022-30190", "name": "Follina",             "cvss": 7.8,  "affected": "Microsoft Support Diagnostic" },
+    { "cve": "CVE-2023-23397", "name": "Outlook RCE",         "cvss": 9.8,  "affected": "Microsoft Outlook" },
+    { "cve": "CVE-2024-3400",  "name": "PAN-OS RCE",          "cvss": 10.0, "affected": "Palo Alto PAN-OS" },
+    { "cve": "CVE-2023-44487", "name": "HTTP/2 Rapid Reset",  "cvss": 7.5,  "affected": "HTTP/2 servers" },
+    { "cve": "CVE-2021-26084", "name": "Confluence RCE",      "cvss": 9.8,  "affected": "Atlassian Confluence" },
+    { "cve": "CVE-2022-1388",  "name": "F5 BIG-IP RCE",       "cvss": 9.8,  "affected": "F5 BIG-IP" }
+  ],
+
+  "mitre_high_priority_techniques": [
+    { "id": "T1110",   "name": "Brute Force",                  "tactic": "Credential Access" },
+    { "id": "T1059",   "name": "Command & Scripting Interpreter","tactic": "Execution" },
+    { "id": "T1486",   "name": "Data Encrypted for Impact",    "tactic": "Impact" },
+    { "id": "T1003",   "name": "OS Credential Dumping",        "tactic": "Credential Access" },
+    { "id": "T1071",   "name": "Application Layer Protocol",   "tactic": "C2" },
+    { "id": "T1021",   "name": "Remote Services",              "tactic": "Lateral Movement" },
+    { "id": "T1041",   "name": "Exfiltration Over C2 Channel", "tactic": "Exfiltration" },
+    { "id": "T1190",   "name": "Exploit Public-Facing App",    "tactic": "Initial Access" },
+    { "id": "T1566",   "name": "Phishing",                     "tactic": "Initial Access" },
+    { "id": "T1548",   "name": "Abuse Elevation Control",      "tactic": "Privilege Escalation" }
+  ]
+}

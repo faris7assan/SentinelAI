@@ -1,0 +1,8 @@
+fastapi==0.110.0
+uvicorn[standard]==0.28.0
+pydantic==2.6.4
+aiokafka==0.10.0
+aioredis==2.0.1
+opensearch-py[async]==2.5.0
+loguru==0.7.2
+httpx==0.27.0

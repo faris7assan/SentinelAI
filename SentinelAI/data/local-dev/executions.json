@@ -1,0 +1,26 @@
+[
+  {
+    "details": {
+      "alert": {
+        "rule_name": "SSH Brute Force"
+      }
+    },
+    "execution_id": "exe-cc951e7e1caa",
+    "finished_at": "2026-07-03T14:10:07.583997+00:00",
+    "playbook": "brute_force",
+    "started_at": "2026-07-03T14:10:07.583981+00:00",
+    "status": "completed"
+  },
+  {
+    "details": {
+      "alert": {
+        "rule_name": "SSH Brute Force"
+      }
+    },
+    "execution_id": "exe-0c3f831fb10f",
+    "finished_at": "2026-07-03T14:00:56.445172+00:00",
+    "playbook": "brute_force",
+    "started_at": "2026-07-03T14:00:56.445155+00:00",
+    "status": "completed"
+  }
+]

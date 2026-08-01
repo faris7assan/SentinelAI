@@ -1,0 +1,43 @@
+[
+  {
+    "event_hash": "6d04fb5269d6926592688ffd4649aeb6201204ecb6361ff58e98724d85661ab5",
+    "event_type": "failed_login",
+    "hostname": "host",
+    "ingested_at": "2026-07-03T14:10:07.517522+00:00",
+    "log_source": "syslog",
+    "raw_log": "Failed password for root from 1.2.3.4 ssh2",
+    "severity": "high",
+    "source_ip": "1.2.3.4",
+    "timestamp": "2026-07-03T14:10:07.517475+00:00"
+  },
+  {
+    "agent_id": "agent-ws01",
+    "event_hash": "dec662de21652cbc9dda3a5362c12e71cd1b1a772b0b08bdd0348c1aa7c4b713",
+    "event_type": "failed_login",
+    "hostname": "workstation-01",
+    "ingested_at": "2026-07-03T14:00:05.804315+00:00",
+    "log_source": "syslog",
+    "os_type": "linux",
+    "parsed": {
+      "username": "root"
+    },
+    "raw_log": "Failed password for root from 10.0.2.15 port 44444 ssh2",
+    "severity": "high",
+    "source_ip": "10.0.2.15",
+    "timestamp": "2026-07-03T14:00:05.804292+00:00"
+  },
+  {
+    "agent_id": "agent-srv01",
+    "event_hash": "80e42f0946045ba8780b942cef340a12f06607c7eaa484a9d239bc3cf9b939bf",
+    "event_type": "file_modification",
+    "hostname": "server-01",
+    "ingested_at": "2026-07-03T14:00:05.804955+00:00",
+    "log_source": "auditd",
+    "os_type": "linux",
+    "parsed": {},
+    "raw_log": "auditd: type=PATH name=\"/home/user/docs/report.docx.encrypted\" nametype=CREATE",
+    "severity": "critical",
+    "source_ip": "10.0.1.50",
+    "timestamp": "2026-07-03T14:00:05.804944+00:00"
+  }
+]

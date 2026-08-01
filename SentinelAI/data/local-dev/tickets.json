@@ -1,0 +1,14 @@
+[
+  {
+    "id": "TCK-1001",
+    "priority": "high",
+    "status": "open",
+    "title": "Review suspicious login activity"
+  },
+  {
+    "id": "TCK-1002",
+    "priority": "medium",
+    "status": "in_progress",
+    "title": "Validate endpoint isolation workflow"
+  }
+]

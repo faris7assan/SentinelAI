@@ -1,0 +1,65 @@
+[tool.pytest.ini_options]
+testpaths       = ["tests"]
+python_files    = ["test_*.py", "*_test.py"]
+python_classes  = ["Test*"]
+python_functions= ["test_*"]
+asyncio_mode    = "auto"
+markers         = [
+    "unit:       Unit tests (fast, no external services)",
+    "integration:Integration tests (requires running services)",
+    "slow:       Slow tests (ML model training, >10s)",
+    "security:   Security-specific tests",
+]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--color=yes",
+    "--strict-markers",
+    "-p no:warnings",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["backend"]
+omit   = ["*/tests/*", "*/__pycache__/*", "*/migrations/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under   = 70
+
+[tool.black]
+line-length    = 100
+target-version = ["py311"]
+include        = "\\.pyi?$"
+exclude        = "/(node_modules|\\.git|__pycache__|dist|build)/"
+
+[tool.ruff]
+line-length    = 100
+target-version = "py311"
+select         = ["E","F","W","I","N","S","B","A","C","T"]
+ignore         = ["S101","S603","S607","S608","B008","A003","T201","C901"]
+exclude        = [".git","__pycache__","node_modules","dist",".venv"]
+
+[build-system]
+requires      = ["setuptools>=68","wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name            = "sentinelai"
+version         = "1.0.0"
+description     = "Autonomous AI-Powered SOC Platform"
+readme          = "README.md"
+requires-python = ">=3.11"
+license         = {text = "MIT"}
+authors         = [{name="Hassan Hamed Faris", email="faris7assan@gmail.com"}]
+keywords        = ["cybersecurity","soc","ai","detection","soar"]
+classifiers     = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "Topic :: Security",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+]

@@ -1,0 +1,43 @@
+[Unit]
+Description=SentinelAI Log Collection Agent
+Documentation=https://github.com/faris7assan/SentinelAI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sentinelai
+Group=sentinelai
+WorkingDirectory=/opt/sentinelai-agent
+
+# Agent binary / script
+ExecStart=/usr/bin/python3 /opt/sentinelai-agent/log_agent.py
+Restart=always
+RestartSec=10
+
+# Environment
+Environment="SENTINELAI_API=http://SENTINELAI_SERVER_IP:8000"
+Environment="AGENT_ID=HOSTNAME_HERE"
+Environment="BATCH_SIZE=50"
+Environment="FLUSH_INTERVAL=5"
+EnvironmentFile=-/etc/sentinelai/agent.env
+
+# Hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ReadWritePaths=/var/log /tmp
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=256M
+CPUQuota=20%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sentinelai-agent
+
+[Install]
+WantedBy=multi-user.target

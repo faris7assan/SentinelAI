@@ -1,0 +1,50 @@
+[
+  {
+    "alert_id": "alert-ssh-brute-force-ab6df556",
+    "attack_chain": [],
+    "correlated": false,
+    "description": "Multiple failed SSH login attempts from same IP",
+    "detection_type": "brute_force",
+    "hostname": "host",
+    "mitre_tactic": "Credential Access",
+    "mitre_technique": "T1110",
+    "raw_log": "Failed password for root from 1.2.3.4 ssh2",
+    "rule_id": "SIG-001",
+    "rule_name": "SSH Brute Force",
+    "severity": "high",
+    "source_ip": "1.2.3.4",
+    "timestamp": "2026-07-03T14:10:07.522683+00:00"
+  },
+  {
+    "alert_id": "alert-ssh-brute-force-3f2a9eed",
+    "attack_chain": [],
+    "correlated": false,
+    "description": "Multiple failed SSH login attempts from same IP",
+    "detection_type": "brute_force",
+    "hostname": "host",
+    "mitre_tactic": "Credential Access",
+    "mitre_technique": "T1110",
+    "raw_log": "Failed password for root from 1.2.3.4 ssh2",
+    "rule_id": "SIG-001",
+    "rule_name": "SSH Brute Force",
+    "severity": "high",
+    "source_ip": "1.2.3.4",
+    "timestamp": "2026-07-03T14:10:07.500416+00:00"
+  },
+  {
+    "alert_id": "seed-alert-1",
+    "attack_chain": [],
+    "correlated": false,
+    "description": "Multiple failed SSH login attempts from same IP",
+    "detection_type": "brute_force",
+    "hostname": "workstation-01",
+    "mitre_tactic": "Credential Access",
+    "mitre_technique": "T1110",
+    "raw_log": "Failed password for root from 10.0.2.15 port 44444 ssh2",
+    "rule_id": "SIG-001",
+    "rule_name": "SSH Brute Force",
+    "severity": "high",
+    "source_ip": "10.0.2.15",
+    "timestamp": "2026-07-03T14:00:05.805614+00:00"
+  }
+]

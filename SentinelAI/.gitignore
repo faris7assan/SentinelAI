@@ -1,0 +1,99 @@
+# ============================================================
+# SentinelAI .gitignore
+# ============================================================
+
+# ─── Secrets (NEVER commit these) ───────────────────────────
+.env
+.env.local
+.env.production
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+**/credentials.json
+**/service-account*.json
+
+# ─── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-log.txt
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+venv/
+env/
+.venv/
+*.pyc
+
+# ─── Node / Frontend ─────────────────────────────────────────
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.turbo/
+*.tsbuildinfo
+.eslintcache
+.npm
+
+# ─── Terraform ───────────────────────────────────────────────
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+terraform/.terraform.lock.hcl
+terraform/crash.log
+
+# ─── IDE ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.project
+.classpath
+.settings/
+
+# ─── Logs ────────────────────────────────────────────────────
+logs/
+*.log
+*.log.*
+
+# ─── AI models (large binary files) ─────────────────────────
+ai-engine/models/*.pkl
+ai-engine/models/*.joblib
+ai-engine/models/*.bin
+ai-engine/models/*.h5
+ai-engine/models/*.pt
+ai-engine/models/*.pth
+ai-engine/models/*.onnx
+
+# ─── Test artifacts ──────────────────────────────────────────
+.pytest_cache/
+test-results/
+coverage.xml
+junit.xml
+
+# ─── Reports (generated) ─────────────────────────────────────
+reports/*.pdf
+reports/*.html
+
+# ─── Temp / sandbox ──────────────────────────────────────────
+tmp/
+/tmp/sentinelai-sandbox/
+*.tmp
+*.bak
+*.orig

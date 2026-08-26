@@ -25,6 +25,8 @@ Response / SOAR Workflows
 Dashboard / Reports / Alerts
 ```
 
+A Mermaid portfolio architecture and hardening checklist are available in [`docs/ARCHITECTURE_PORTFOLIO.md`](docs/ARCHITECTURE_PORTFOLIO.md).
+
 ## Core Areas
 
 ### Endpoint & Network Monitoring
@@ -106,6 +108,12 @@ The platform is designed to support investigation of security events including:
 - Malware-related activity
 - Privilege escalation
 - Lateral movement
+
+## Security Hardening
+
+Before treating the project as production-ready, enforce deployment-time JWT secrets, restrict CORS to trusted origins, and protect account provisioning and administrative endpoints with explicit authorization.
+
+See [`SECURITY.md`](SECURITY.md) for responsible disclosure and secret-handling guidance.
 
 ## Project Value
 

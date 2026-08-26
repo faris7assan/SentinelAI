@@ -1,121 +1,125 @@
-# 🛡️ SentinelAI — Autonomous AI-Powered SOC Platform
+# SentinelAI
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Python](https://img.shields.io/badge/python-3.11+-green)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.110-teal)
-![License](https://img.shields.io/badge/license-MIT-purple)
+## AI-Assisted SOC & Threat Detection Platform
 
-> Enterprise-grade, AI-powered Security Operations Center platform capable of autonomous threat detection, correlation, and response.
+SentinelAI is a cybersecurity project exploring how endpoint telemetry, network-security data, rule-based detection, machine learning, threat intelligence, and automated response can be combined into a SOC-style platform.
 
----
+> **Project status:** Experimental / portfolio project. The architecture describes a broad security platform; individual integrations and capabilities should be verified against the current code before production use.
 
-## 🌐 Architecture Overview
+## Architecture
 
-```
-Endpoints/Servers
-       ↓
- Log Collectors (Zeek, Suricata, Sysmon, auditd)
-       ↓
- Message Queue (Kafka)
-       ↓
- Detection Engine (Sigma + YARA + Behavioral)
-       ↓
- AI Analysis Engine (Isolation Forest + XGBoost + LangChain)
-       ↓
- Correlation Engine (Attack Chain Builder)
-       ↓
- SOAR Automation (Playbooks + Auto-Response)
-       ↓
- Dashboard + Reports + Alerts (React + Next.js)
+```text
+Endpoints / Network Sources
+          ↓
+Log & Telemetry Collection
+          ↓
+Detection Layer
+(Sigma / YARA / IDS / Behavioral)
+          ↓
+AI-Assisted Analysis
+          ↓
+Event Correlation
+          ↓
+Response / SOAR Workflows
+          ↓
+Dashboard / Reports / Alerts
 ```
 
----
+## Core Areas
 
-## 📦 Microservices
+### Endpoint & Network Monitoring
 
-| Service | Port | Description |
-|---|---|---|
-| local-dev backend | 8000 | Unified local backend for auth, logs, detections, AI, reports, SOAR, threat intel, and more |
-| frontend | 3000 | React/Next.js dashboard |
-| desktop app | local | PyQt5 control panel |
+The project is designed to work with security telemetry such as:
 
----
+- Windows Event Logs / Sysmon
+- Linux audit and system logs
+- Zeek / Suricata network telemetry
+- tcpdump/network traffic data
 
-## 🚀 Quick Start
+### Detection
 
-### Prerequisites
+- Sigma-style detection rules
+- YARA-based analysis
+- IDS/network detection signals
+- Behavioral and anomaly detection
+- Multi-event correlation
+
+### AI / ML
+
+The project explores:
+
+- Isolation Forest anomaly detection
+- Supervised classification models
+- Local LLM-assisted analysis
+- Automated incident summaries
+
+### SOAR Concepts
+
+Example response workflows include:
+
+- Phishing investigation
+- Brute-force response
+- Suspicious-host isolation
+- IP blocking
+
+### Threat Intelligence
+
+The architecture includes integrations for reputation and threat-intelligence sources such as VirusTotal, AbuseIPDB, AlienVault OTX, and MISP/OpenCTI.
+
+## Local Development
+
+### Requirements
+
 - Python 3.11+
 - Node.js 20+
 
-### Launch Local Dev Mode
 ```bash
-git clone https://github.com/faris7assan/SentinelAI
+git clone https://github.com/faris7assan/SentinelAI.git
 cd SentinelAI
 python scripts/start_local_dev.py
 ```
 
-### Access
-- **Local backend**: http://127.0.0.1:8000
-- **Desktop app**: starts automatically in local mode
-- **Dashboard**: http://localhost:3000 if you still run the frontend separately
+The local development setup exposes the backend on `127.0.0.1:8000`. A separate frontend can be run on port `3000` when required by the current project configuration.
 
----
+## Security Architecture
 
-## 🧩 Core Modules
+The project explores:
 
-### 1. Endpoint Monitoring
-- Linux: `auditd`, `syslog`, `osquery`
-- Windows: `Sysmon`, `Windows Event Logs`
-- Network: `Zeek`, `Suricata`, `tcpdump`
+- Zero-Trust security principles
+- JWT authentication
+- MFA
+- RBAC
+- Environment-based secret management
+- OWASP-oriented application security
+- MITRE ATT&CK mapping
 
-### 2. Detection Engine
-- **Signature**: Sigma Rules + YARA Rules + Suricata IDS
-- **Behavioral**: Impossible travel, priv escalation, reverse shells
-- **Correlation**: Multi-event attack chain detection
+## Example Detection Areas
 
-### 3. AI Engine
-- **Anomaly Detection**: Isolation Forest + Autoencoders
-- **Classification**: XGBoost + Random Forest + DNN
-- **NLP Assistant**: LangChain + Ollama (local LLM)
-- **Report Generation**: AI-powered incident summaries
+The platform is designed to support investigation of security events including:
 
-### 4. SOAR Automation
-- Phishing playbook
-- Brute force response
-- Malware isolation
-- IP blocking automation
+- Brute force
+- DDoS
+- Port scanning
+- Suspicious process execution
+- Reverse shells
+- DNS tunneling
+- Malware-related activity
+- Privilege escalation
+- Lateral movement
 
-### 5. Threat Intelligence
-- VirusTotal integration
-- AbuseIPDB reputation
-- AlienVault OTX feeds
-- MISP/OpenCTI connectors
+## Project Value
 
----
+SentinelAI demonstrates how a SOC workflow can combine **telemetry → detection → correlation → investigation → response** rather than treating machine learning as a standalone classifier.
 
-## 🔐 Security Architecture
-- Zero-Trust design
-- JWT + MFA + RBAC
-- Secrets via environment variables
-- OWASP Top 10 mitigations applied
+## Author
 
----
+**Hassan Faris**  
+Cybersecurity Graduate | SOC | Threat Detection | Network Security
 
-## 📊 Supported Attack Detection
-- DDoS, Brute Force, Ransomware
-- Reverse Shells, DNS Tunneling
-- Port Scanning, Malware Execution
-- Data Exfiltration, Credential Stuffing
-- Lateral Movement, Privilege Escalation
+- GitHub: https://github.com/faris7assan
+- Portfolio: https://hassanhamedfaris69.base44.app/
+- LinkedIn: https://www.linkedin.com/in/hassan-faris/
 
----
+## Disclaimer
 
-## 🗺️ MITRE ATT&CK Coverage
-Dashboard maps all detections to ATT&CK tactics and techniques.
-
----
-
-## 👨‍💻 Author
-**Hassan Hamed Faris**  
-Cybersecurity Engineering  
-GitHub: [@faris7assan](https://github.com/faris7assan)
+For educational, research, and authorized security-testing environments only. Do not deploy automated response actions against systems without explicit authorization.

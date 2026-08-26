@@ -49,7 +49,7 @@ python-magic==0.4.27
 yara-python==4.5.0
 boto3==1.34.69
 pyotp==2.9.0
-qrcode[pil]==7.4.2
+qrcode[pil]==8.2
 passlib[bcrypt]==1.7.4
 PyJWT==2.8.0
 loguru==0.7.2

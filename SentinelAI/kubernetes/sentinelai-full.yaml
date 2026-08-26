@@ -1,10 +1,12 @@
 ---
 # ============================================================
 # SentinelAI Kubernetes Manifests
-# All services, deployments, and configs
+# Portfolio/reference deployment configuration.
+# IMPORTANT: inject real credentials through a secret manager
+# or sealed/external secrets in any real environment.
+# Do NOT deploy this file with placeholder secrets unchanged.
 # ============================================================
 
-# ─── Namespace ──────────────────────────────────────────────
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -14,7 +16,6 @@ metadata:
     environment: production
 
 ---
-# ─── ConfigMap ──────────────────────────────────────────────
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -34,7 +35,8 @@ data:
   ENVIRONMENT: "production"
 
 ---
-# ─── Secret (base64-encode values in production) ────────────
+# Reference Secret object.
+# Replace these placeholders using a secret-management workflow before deployment.
 apiVersion: v1
 kind: Secret
 metadata:
@@ -42,16 +44,15 @@ metadata:
   namespace: sentinelai
 type: Opaque
 stringData:
-  JWT_SECRET_KEY: "CHANGE_ME_IN_PRODUCTION_USE_SEALED_SECRETS"
-  POSTGRES_PASSWORD: "CHANGE_ME_STRONG_PASSWORD"
-  REDIS_PASSWORD: "CHANGE_ME_REDIS_PASSWORD"
-  OPENSEARCH_PASSWORD: "CHANGE_ME_OPENSEARCH_PASSWORD"
-  VIRUSTOTAL_API_KEY: ""
-  ABUSEIPDB_API_KEY: ""
-  ALIENVAULT_OTX_KEY: ""
+  JWT_SECRET_KEY: "REPLACE_WITH_RANDOM_SECRET"
+  POSTGRES_PASSWORD: "REPLACE_WITH_STRONG_PASSWORD"
+  REDIS_PASSWORD: "REPLACE_WITH_STRONG_REDIS_PASSWORD"
+  OPENSEARCH_PASSWORD: "REPLACE_WITH_STRONG_OPENSEARCH_PASSWORD"
+  VIRUSTOTAL_API_KEY: "REPLACE_WITH_VIRUSTOTAL_KEY"
+  ABUSEIPDB_API_KEY: "REPLACE_WITH_ABUSEIPDB_KEY"
+  ALIENVAULT_OTX_KEY: "REPLACE_WITH_OTX_KEY"
 
 ---
-# ─── PostgreSQL ──────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -99,6 +100,7 @@ spec:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-pvc
+
 ---
 apiVersion: v1
 kind: Service
@@ -114,7 +116,6 @@ spec:
   type: ClusterIP
 
 ---
-# ─── Redis ──────────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -143,6 +144,7 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+
 ---
 apiVersion: v1
 kind: Service
@@ -157,7 +159,6 @@ spec:
       targetPort: 6379
 
 ---
-# ─── Auth Service ─────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -202,6 +203,7 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+
 ---
 apiVersion: v1
 kind: Service
@@ -216,7 +218,6 @@ spec:
       targetPort: 8001
 
 ---
-# ─── Detection Engine ────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -249,6 +250,7 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "1000m"
+
 ---
 apiVersion: v1
 kind: Service
@@ -263,7 +265,6 @@ spec:
       targetPort: 8003
 
 ---
-# ─── AI Service ──────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -298,7 +299,6 @@ spec:
               cpu: "2000m"
 
 ---
-# ─── Frontend ────────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -331,6 +331,7 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+
 ---
 apiVersion: v1
 kind: Service
@@ -345,7 +346,6 @@ spec:
       targetPort: 3000
 
 ---
-# ─── Ingress ─────────────────────────────────────────────────
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -389,7 +389,6 @@ spec:
                   number: 3000
 
 ---
-# ─── PersistentVolumeClaims ──────────────────────────────────
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -403,7 +402,6 @@ spec:
       storage: 20Gi
 
 ---
-# ─── HorizontalPodAutoscaler ─────────────────────────────────
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:

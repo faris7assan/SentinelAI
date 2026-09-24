@@ -1,12 +1,12 @@
-title: ssh attack
+title: certutil download or decode activity
 id: 07715331-85f6-496a-ad79-dbe4009ba504
 status: experimental
 level: high
 description: |
-    Auto-generated Sigma rule for: ssh attack
+    Detects Windows certutil usage commonly associated with file transfer or decoding
 logsource:
     category: process_creation
-    product: cloud
+    product: windows
 detection:
     selection:
         CommandLine|contains:
@@ -15,6 +15,7 @@ detection:
             - '-decode'
     condition: selection
 tags:
-    - attack.t1059
+    - attack.t1105
+    - attack.t1140
 falsepositives:
     - Legitimate admin activity

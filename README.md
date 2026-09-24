@@ -2,132 +2,64 @@
 
 ## AI-Assisted SOC & Threat Detection Platform
 
-SentinelAI is a cybersecurity project exploring how endpoint telemetry, network-security data, rule-based detection, machine learning, threat intelligence, and automated response can be combined into a SOC-style platform.
+SentinelAI explores endpoint telemetry, network-security data, rule-based detection, machine learning, threat intelligence, event correlation, and response workflows in a SOC-style platform.
 
-> **Project status:** Experimental / portfolio project. The architecture describes a broad security platform; individual integrations and capabilities should be verified against the current code before production use.
+> Status: Experimental / portfolio project. Integrations must be verified and hardened before production use.
 
-## Architecture
+## Security workflow
 
-```text
-Endpoints / Network Sources
-          ↓
-Log & Telemetry Collection
-          ↓
-Detection Layer
-(Sigma / YARA / IDS / Behavioral)
-          ↓
-AI-Assisted Analysis
-          ↓
-Event Correlation
-          ↓
-Response / SOAR Workflows
-          ↓
-Dashboard / Reports / Alerts
-```
+~~~text
+Telemetry → Ingestion / Normalization → Detection + Threat Scoring
+         → Correlation / Investigation → Analyst Dashboard
+         → Response Workflow
+~~~
 
-A Mermaid portfolio architecture and hardening checklist are available in [`docs/ARCHITECTURE_PORTFOLIO.md`](docs/ARCHITECTURE_PORTFOLIO.md).
-
-## Core Areas
-
-### Endpoint & Network Monitoring
-
-The project is designed to work with security telemetry such as:
+## Detection areas
 
 - Windows Event Logs / Sysmon
-- Linux audit and system logs
-- Zeek / Suricata network telemetry
-- tcpdump/network traffic data
-
-### Detection
-
-- Sigma-style detection rules
-- YARA-based analysis
-- IDS/network detection signals
+- Linux audit/system logs
+- Zeek / Suricata telemetry
+- Sigma-style rules
+- YARA-oriented analysis
 - Behavioral and anomaly detection
 - Multi-event correlation
+- Threat-intelligence enrichment
 
-### AI / ML
-
-The project explores:
+## AI / ML
 
 - Isolation Forest anomaly detection
-- Supervised classification models
+- Supervised classification
 - Local LLM-assisted analysis
 - Automated incident summaries
 
-### SOAR Concepts
+AI output is analyst assistance, not authoritative evidence.
 
-Example response workflows include:
+## Response safety
 
-- Phishing investigation
-- Brute-force response
-- Suspicious-host isolation
-- IP blocking
+High-impact actions such as endpoint isolation, process termination, firewall changes, and IP blocking should follow:
 
-### Threat Intelligence
+~~~text
+DETECTED → TRIAGED → POLICY CHECK → APPROVED → EXECUTED → VERIFIED
+~~~
 
-The architecture includes integrations for reputation and threat-intelligence sources such as VirusTotal, AbuseIPDB, AlienVault OTX, and MISP/OpenCTI.
+Automated actions should be disabled by default, constrained to allowlisted assets, authorized explicitly, and audited.
 
-## Local Development
+See docs/RESPONSE_SAFETY.md.
 
-### Requirements
+## Security hardening
 
-- Python 3.11+
-- Node.js 20+
+- Inject JWT secrets through deployment-time secret management.
+- Restrict CORS to trusted origins.
+- Enforce authorization on administrative/account-provisioning endpoints.
+- Keep threat-intelligence credentials out of source control.
+- Isolate high-impact response actions behind explicit policy gates.
 
-```bash
-git clone https://github.com/faris7assan/SentinelAI.git
-cd SentinelAI
-python scripts/start_local_dev.py
-```
-
-The local development setup exposes the backend on `127.0.0.1:8000`. A separate frontend can be run on port `3000` when required by the current project configuration.
-
-## Security Architecture
-
-The project explores:
-
-- Zero-Trust security principles
-- JWT authentication
-- MFA
-- RBAC
-- Environment-based secret management
-- OWASP-oriented application security
-- MITRE ATT&CK mapping
-
-## Example Detection Areas
-
-The platform is designed to support investigation of security events including:
-
-- Brute force
-- DDoS
-- Port scanning
-- Suspicious process execution
-- Reverse shells
-- DNS tunneling
-- Malware-related activity
-- Privilege escalation
-- Lateral movement
-
-## Security Hardening
-
-Before treating the project as production-ready, enforce deployment-time JWT secrets, restrict CORS to trusted origins, and protect account provisioning and administrative endpoints with explicit authorization.
-
-See [`SECURITY.md`](SECURITY.md) for responsible disclosure and secret-handling guidance.
-
-## Project Value
-
-SentinelAI demonstrates how a SOC workflow can combine **telemetry → detection → correlation → investigation → response** rather than treating machine learning as a standalone classifier.
+See SECURITY.md.
 
 ## Author
 
-**Hassan Faris**  
-Cybersecurity Graduate | SOC | Threat Detection | Network Security
+Hassan Faris — Cybersecurity Engineer | SOC | Network Security
 
 - GitHub: https://github.com/faris7assan
-- Portfolio: https://hassanhamedfaris69.base44.app/
-- LinkedIn: https://www.linkedin.com/in/hassan-faris/
-
-## Disclaimer
-
-For educational, research, and authorized security-testing environments only. Do not deploy automated response actions against systems without explicit authorization.
+- LinkedIn: https://www.linkedin.com/in/hassan-faris
+- Portfolio: https://hassanhamedfaris69.base44.app

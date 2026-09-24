@@ -2,22 +2,20 @@
 
 ## AI-Assisted SOC & Threat Detection Platform
 
-SentinelAI explores endpoint telemetry, network-security data, rule-based detection, machine learning, threat intelligence, event correlation, and response workflows in a SOC-style platform.
+**SentinelAI** is an experimental cybersecurity platform exploring endpoint and network telemetry, rule-based detection, machine-learning assistance, threat intelligence, event correlation, and policy-gated response workflows.
 
-> Status: Experimental / portfolio project. Integrations must be verified and hardened before production use.
+> **Project status:** Experimental / portfolio project. Integrations must be independently verified and hardened before production use.
 
-## Security workflow
+![SentinelAI architecture](docs/architecture.svg)
 
-~~~text
-Telemetry → Ingestion / Normalization → Detection + Threat Scoring
-         → Correlation / Investigation → Analyst Dashboard
-         → Response Workflow
-~~~
+### Security workflow
 
-## Detection areas
+**Telemetry → normalization → detection → correlation → analyst decision → policy-gated response**
+
+### Detection areas
 
 - Windows Event Logs / Sysmon
-- Linux audit/system logs
+- Linux audit and system logs
 - Zeek / Suricata telemetry
 - Sigma-style rules
 - YARA-oriented analysis
@@ -25,41 +23,45 @@ Telemetry → Ingestion / Normalization → Detection + Threat Scoring
 - Multi-event correlation
 - Threat-intelligence enrichment
 
-## AI / ML
+### AI / ML role
 
 - Isolation Forest anomaly detection
 - Supervised classification
 - Local LLM-assisted analysis
-- Automated incident summaries
+- Automated incident-summary assistance
 
-AI output is analyst assistance, not authoritative evidence.
+AI output is **analyst assistance**, not authoritative evidence.
 
-## Response safety
+### Response safety
 
-High-impact actions such as endpoint isolation, process termination, firewall changes, and IP blocking should follow:
+High-impact actions such as endpoint isolation, process termination, firewall changes, or IP blocking should follow:
 
-~~~text
-DETECTED → TRIAGED → POLICY CHECK → APPROVED → EXECUTED → VERIFIED
-~~~
+**DETECTED → TRIAGED → POLICY CHECK → AUTHORIZED → EXECUTED → VERIFIED → AUDITED**
 
-Automated actions should be disabled by default, constrained to allowlisted assets, authorized explicitly, and audited.
+Automated response should be disabled by default and constrained by explicit policy, allowlists, authorization, and audit logging.
 
-See docs/RESPONSE_SAFETY.md.
+See docs/RESPONSE_SAFETY.md and SECURITY.md.
 
-## Security hardening
+### Security hardening
 
-- Inject JWT secrets through deployment-time secret management.
+- Inject secrets through deployment-time secret management.
 - Restrict CORS to trusted origins.
-- Enforce authorization on administrative/account-provisioning endpoints.
+- Enforce authorization on administrative endpoints.
 - Keep threat-intelligence credentials out of source control.
 - Isolate high-impact response actions behind explicit policy gates.
 
-See SECURITY.md.
+### My role
 
-## Author
+**Hassan Faris — Cybersecurity Engineer | SOC | Network Security**
 
-Hassan Faris — Cybersecurity Engineer | SOC | Network Security
+Focused on detection workflow design, security telemetry, correlation, AI-assisted analysis, and safe response architecture.
+
+### Links
 
 - GitHub: https://github.com/faris7assan
 - LinkedIn: https://www.linkedin.com/in/hassan-faris
 - Portfolio: https://hassanhamedfaris69.base44.app
+
+### Authorized-use notice
+
+Use endpoint telemetry collection, network monitoring, and response capabilities only in environments where you have explicit authorization.
